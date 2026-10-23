@@ -22,9 +22,9 @@ pi 自带的 `/tree` 用于定位会话历史、切换分支；**`/history-tree`
 
 需要先安装 pi。已在 `@earendil-works/pi-coding-agent` **1.4.0** 上验证。
 
-### 从 npm 安装
+### 从 npm 安装（推荐）
 
-`0.1.0` 发布到 npm 后，可执行：
+直接安装已发布的包，无需克隆仓库：
 
 ```bash
 pi install npm:pi-history-tree
@@ -38,9 +38,9 @@ pi install npm:pi-history-tree@0.1.0
 
 已经运行的 pi 执行 `/reload` 即可加载；以后启动 pi 会自动加载。
 
-### 从本地仓库安装
+### 从本地仓库安装（适合开发）
 
-克隆或下载本仓库后，**在仓库目录内**执行：
+如果需要修改插件代码，克隆或下载本仓库后，**在仓库目录内**执行：
 
 ```bash
 pi install .
@@ -52,7 +52,7 @@ pi install .
 
 ### 不安装，临时体验
 
-npm 发布后：
+只在本次 pi 启动中加载 npm 包：
 
 ```bash
 pi -e npm:pi-history-tree

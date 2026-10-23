@@ -22,9 +22,9 @@ This is an independent extension. It does not modify pi’s core or replace `/tr
 
 Requires pi. Tested with `@earendil-works/pi-coding-agent` **1.4.0**.
 
-### Install from npm
+### Install from npm (recommended)
 
-Once version `0.1.0` is published to npm:
+Install the published package directly—no repository checkout required:
 
 ```bash
 pi install npm:pi-history-tree
@@ -38,9 +38,9 @@ pi install npm:pi-history-tree@0.1.0
 
 In an existing pi session, run `/reload`. New pi sessions load the extension automatically.
 
-### Install from a local checkout
+### Install from a local checkout (for development)
 
-After cloning or downloading this repository, run the following **from the repository directory**:
+If you want to modify the extension, clone or download this repository and run the following **from the repository directory**:
 
 ```bash
 pi install .
@@ -52,7 +52,7 @@ In an existing pi session, run `/reload`. New pi sessions load the extension aut
 
 ### Try it without installing
 
-After the npm release:
+Try the npm package for a single pi invocation:
 
 ```bash
 pi -e npm:pi-history-tree
