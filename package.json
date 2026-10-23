@@ -1,0 +1,15 @@
+{
+  "name": "pi-history-tree",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Read-only user-message history tree and transcript reader for pi",
+  "type": "module",
+  "keywords": ["pi-package"],
+  "pi": { "extensions": ["./src/index.js"] },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*"
+  },
+  "scripts": { "test": "node --test test/*.test.js", "check": "node --check src/index.js && node --check src/history.js && node --check src/browser.js && node --check src/reader.js && node --check src/render.js && node --check src/presentation.js" },
+  "engines": { "node": ">=22.19.0" }
+}
