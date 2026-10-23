@@ -22,6 +22,24 @@ pi 自带的 `/tree` 用于定位会话历史、切换分支；**`/history-tree`
 
 需要先安装 pi。已在 `@earendil-works/pi-coding-agent` **1.4.0** 上验证。
 
+### 从 npm 安装
+
+`0.1.0` 发布到 npm 后，可执行：
+
+```bash
+pi install npm:pi-history-tree
+```
+
+也可以固定安装版本：
+
+```bash
+pi install npm:pi-history-tree@0.1.0
+```
+
+已经运行的 pi 执行 `/reload` 即可加载；以后启动 pi 会自动加载。
+
+### 从本地仓库安装
+
 克隆或下载本仓库后，**在仓库目录内**执行：
 
 ```bash
@@ -34,11 +52,28 @@ pi install .
 
 ### 不安装，临时体验
 
+npm 发布后：
+
+```bash
+pi -e npm:pi-history-tree
+```
+
+也可以临时加载本地仓库：
+
 ```bash
 pi -e /absolute/path/to/pi-history-tree/src/index.js
 ```
 
-将路径替换为实际仓库路径。这种方式只对本次启动生效，不修改配置。
+将路径替换为实际仓库路径。两种方式都只对本次启动生效，不修改配置。
+
+如果之前安装了本地版本，切换到 npm 时先移除本地注册，避免重复加载：
+
+```bash
+pi remove /absolute/path/to/pi-history-tree
+pi install npm:pi-history-tree
+```
+
+这只会移除 pi 中的注册，不会删除仓库目录。
 
 ## 使用
 
@@ -72,3 +107,7 @@ pi -e /absolute/path/to/pi-history-tree/src/index.js
 - “最终回复”根据历史记录的结束状态判断，不调用模型生成摘要。未完成或无法确认的回复会显示简短提示，可用 Ctrl+P 查看原始过程。
 - 图片显示为占位提示。工具输出以实际保存的内容为准，无法恢复保存前已被截断的内容。
 - 阅读器展示打开时的快照。如果模型仍在运行，它会继续正常工作；关闭浏览器后重新打开即可看到更新的消息。
+
+## 许可证
+
+本项目采用 [MIT 许可证](LICENSE)，版权归 2026 JXZxiao5 所有。

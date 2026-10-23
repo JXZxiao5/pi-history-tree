@@ -1,15 +1,23 @@
 {
   "name": "pi-history-tree",
   "version": "0.1.0",
-  "private": true,
+  "license": "MIT",
   "description": "Read-only user-message history tree and transcript reader for pi",
   "type": "module",
-  "keywords": ["pi-package"],
+  "keywords": ["pi-package", "pi", "history", "conversation", "reader"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JXZxiao5/pi-history-tree.git"
+  },
+  "homepage": "https://github.com/JXZxiao5/pi-history-tree#readme",
+  "bugs": { "url": "https://github.com/JXZxiao5/pi-history-tree/issues" },
+  "files": ["src/", "docs/images/", "README.md", "README.zh-CN.md", "LICENSE"],
+  "publishConfig": { "access": "public", "registry": "https://registry.npmjs.org/" },
   "pi": { "extensions": ["./src/index.js"] },
   "peerDependencies": {
     "@earendil-works/pi-coding-agent": "*",
     "@earendil-works/pi-tui": "*"
   },
-  "scripts": { "test": "node --test test/*.test.js", "check": "node --check src/index.js && node --check src/history.js && node --check src/browser.js && node --check src/reader.js && node --check src/render.js && node --check src/presentation.js" },
+  "scripts": { "test": "node --test test/*.test.js", "prepublishOnly": "npm run check && npm test", "check": "node --check src/index.js && node --check src/history.js && node --check src/browser.js && node --check src/reader.js && node --check src/render.js && node --check src/presentation.js" },
   "engines": { "node": ">=22.19.0" }
 }

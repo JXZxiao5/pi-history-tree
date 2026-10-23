@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Optional Linux PTY smoke test: real pi CLI, isolated HOME/config, synthetic session.
 No real credentials, user sessions, project configuration, or model prompts are used.
-Run: python3 test/cli-smoke.py [regular|fullscreen]
+Run: python3 test/cli-smoke.py [regular|fullscreen] [extension-file-or-package]
+The optional path can point at an extracted npm tarball to test shipped files.
 """
 import fcntl
 import hashlib
@@ -22,6 +23,7 @@ import time
 repo = Path(__file__).resolve().parents[1]
 mode = sys.argv[1] if len(sys.argv) > 1 else 'regular'
 assert mode in ('regular', 'fullscreen')
+extension = Path(sys.argv[2]).resolve() if len(sys.argv) > 2 else repo / 'src/index.js'
 pi = shutil.which('pi')
 assert pi, 'pi must be on PATH'
 fixture = json.loads(subprocess.check_output(['node', '--input-type=module', '-e', "import {fixture} from './test/fixtures.js'; console.log(JSON.stringify(fixture()))"], cwd=repo))
@@ -34,7 +36,7 @@ with tempfile.TemporaryDirectory(prefix='pi-history-cli-') as tmp:
     env.update(HOME=tmp, PI_CODING_AGENT_DIR=str(root / 'config'), PI_CODING_AGENT_SESSION_DIR=str(root / 'sessions'), PI_OFFLINE='1', PI_SKIP_VERSION_CHECK='1', PI_TELEMETRY='0', TERM='xterm-256color', PI_IMAGE_PROTOCOL='none')
     master, slave = pty.openpty()
     fcntl.ioctl(slave, termios.TIOCSWINSZ, struct.pack('HHHH', 32, 120, 0, 0))
-    command = [pi, '--offline', '--no-extensions', '--no-skills', '--no-prompt-templates', '--no-context-files', '--no-themes', '--no-mcp', '--no-tools', '--no-approve', '--tui-mode', mode, '--model', 'openai/gpt-4.1', '--api-key', 'invalid-offline-test-key', '--session', str(session), '-e', str(repo / 'src/index.js')]
+    command = [pi, '--offline', '--no-extensions', '--no-skills', '--no-prompt-templates', '--no-context-files', '--no-themes', '--no-mcp', '--no-tools', '--no-approve', '--tui-mode', mode, '--model', 'openai/gpt-4.1', '--api-key', 'invalid-offline-test-key', '--session', str(session), '-e', str(extension)]
     proc = subprocess.Popen(command, cwd=tmp, env=env, stdin=slave, stdout=slave, stderr=slave, start_new_session=True)
     os.close(slave)
     log = bytearray()
