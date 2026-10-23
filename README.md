@@ -1,22 +1,37 @@
 # pi-history-tree
 
-A read-only history browser for pi that lets you revisit your prompts and the assistant’s final replies without switching branches or changing your session.
-
-![History Tree showing a searchable list of user messages](docs/images/history-tree-example.png)
+**Revisit earlier conversations without losing your place.**
 
 English · [简体中文](README.zh-CN.md)
 
+## Never lose your place in a long Pi conversation
+
+You ask your agent to create a roadmap for understanding a codebase. Then you dive into the first module, inspect implementations, follow function calls, and ask dozens of questions.
+
+When you're ready to move on, the original roadmap is buried hundreds of lines above.
+
+**pi-history-tree lets you jump back to that roadmap, read the original response, and return to where you left off—without scrolling through the transcript or changing your session.**
+
+Use `/history-tree` to browse your previous questions and open the conversation at any selected question. Press `Esc` to return to the question list, then `Esc` again to resume your ongoing work.
+
+Your exploration keeps moving forward. Your earlier context stays easy to revisit.
+
+![Browse earlier questions and open the response you want to revisit](docs/images/history-tree-example.png)
+
+## Find the question. Read the answer. Keep going.
+
+- **Search what you remember asking.** You probably remember “help me plan a reading route through this repository,” not the exact wording of the agent's answer. The list shows only your messages, making that starting point easy to find.
+- **Read the result, not the execution log.** Open a question to see your input and its final reply. Roadmaps, architecture explanations, and summaries stay readable, with thinking, tool calls, and intermediate steps hidden by default.
+- **Return without losing your place.** Reading does not move your active session position, create a branch, rerun a task, or send a model request. Your search and selection stay intact when you return to the list.
+- **Inspect the process when you need it.** `Ctrl+P` reveals the full recorded process, including tools, thinking, and compaction summaries.
+
 ## How is it different from pi’s built-in Tree?
 
-Pi’s built-in `/tree` is for navigating session history and switching branches. **`/history-tree` is for reading it.**
+Use pi's built-in `/tree` when you want to navigate to another point in the session and continue from there. Use **`/history-tree` when you just want to revisit an earlier answer and then carry on with your current work.**
 
-- **Less noise:** the tree lists only your messages; the reader shows your prompts and final replies by default, hiding thinking, tool calls, and intermediate steps.
-- **Read, don’t navigate:** Enter opens a separate reader at the selected message. It does not move the active session position, create a branch, or send a model request.
-- **Branch-aware:** consecutive messages stay at the same indentation level; only forks add a level. Reading follows one branch at a time, without mixing messages from other branches.
-- **Keep your place:** Esc returns to the tree with your search and selection preserved. Press Esc again to return to your conversation.
-- **Details when needed:** Ctrl+P switches to the full recorded process, including tools, thinking, and compaction summaries.
+The extension opens a separate read-only viewer rather than switching your active branch. It follows one branch at a time, without mixing conversations. Consecutive messages stay at the same indentation level; only forks add a level.
 
-This is an independent extension. It does not modify pi’s core or replace `/tree`.
+It does not modify pi's core or replace `/tree`.
 
 ## Installation
 
@@ -83,8 +98,8 @@ Run this inside pi:
 /history-tree
 ```
 
-1. Type to search your messages, then use **↑ / ↓** to select one.
-2. Press **Enter** to open the reader at that message.
+1. Search for something you asked earlier—for example, “roadmap”—then use **↑ / ↓** to select the question.
+2. Press **Enter** to read the original response, starting at that question.
 3. Scroll through the conversation with **↑ / ↓** or **PgUp / PgDn**.
 4. Press **Esc** to return to the tree, then **Esc** again to close it.
 
